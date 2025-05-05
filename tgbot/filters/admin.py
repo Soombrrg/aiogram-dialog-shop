@@ -7,7 +7,6 @@ from aiogram.types import Message
 
 from tgbot.config import Config
 
-logger = logging.getLogger(__name__)
 
 class AdminFilter(BaseFilter):
 
@@ -18,5 +17,4 @@ class AdminFilter(BaseFilter):
         if self.is_admin is None:
             return False
         config: Config = config
-        logger.warning(f"config:{config}")
         return (message.from_user.id in config.tg_bot.admin_ids) == self.is_admin
