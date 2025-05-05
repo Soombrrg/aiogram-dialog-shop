@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  bot:
+    image: "bot"
+    stop_signal: SIGINT
+    build:
+      context: aiogram-dialog
+    working_dir: "/usr/src/app/tg_bot"
+    volumes:
+      - .:/usr/src/app/tg_bot
+    command: python3 -m bot
+    restart: always
+    env_file:
+      - ".env"
+    networks:
+      - tg_bot
+
+networks:
+  tg_bot:
+    driver: bridge
